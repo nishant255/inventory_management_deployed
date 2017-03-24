@@ -1,0 +1,5 @@
+﻿{
+    "connectionString": "mongodb://localhost/inventory_db",
+    "apiUrl": "http://localhost:3000/api",
+    "secret": "Inventory SECRET"
+}

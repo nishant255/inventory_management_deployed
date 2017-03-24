@@ -1,0 +1,39 @@
+<nav>
+  <div class="orange nav-wrapper">
+    <a href="#!/userdashboard" class="brand-logo right">BMN Inventory<span ng-if="AOC.currentUser.admin === 0"><i>Super Admin</i></span><span ng-if="AOC.currentUser.admin === 1"><i>Admin</i></span></a>
+    <ul>
+      <li><a href="#!/userdashboard">Dashboard</a></li>
+      <li><a href="#!/inventory">Inventory</a></li>
+      <li><a href="#!/orders">Orders</a></li>
+      <li><a ng-if="AOC.currentUser.admin !== 2" href='#!/show_users'>Users</a></li>
+      <li><a href="#!/companies">Companies</a></li>
+      <li><a class="red" href="#!/" ng-click="AOC.logout()">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="body_wrapper">
+<h3 class="center_title">Choose company to buy products from</h3>
+
+<div class="row">
+  <p class="center" ng-if="message.message"><span class='red-text message_pop'>{{message.message}}</span></p>
+  <!-- <p class='red-text center'>{{message.message}}</p> -->
+<form class="center" ng-submit='start()'>
+  <div class="col s6 offset-s3">
+  <div class="input-field s6">
+    <div class="row">
+      <a href='/#!/add_company'class="waves-effect orange btn">Add New Company</a> &nbsp;&nbsp;&nbsp;<b>OR</b>&nbsp;&nbsp;&nbsp;
+      <select class='order_select browser-default' ng-options='company as company.name for company in companies' ng-model='order.company' tabindex="19">
+        <option value="" disabled selected>Select Company</option>
+      </select>
+    </div>
+    <div class="row">
+      <button class="btn waves-effect blue" type="submit" name="action">Continue to Add Products</button>&nbsp;&nbsp;&nbsp;&nbsp;
+      <a href='/#!/adminDashboard'class='waves-effect orange btn'>Cancel Order</a>
+    </div>
+  </div>
+  </div>
+</form>
+</div>
+
+</div>

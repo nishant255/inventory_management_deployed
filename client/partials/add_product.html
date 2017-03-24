@@ -1,0 +1,33 @@
+<nav>
+  <div class="orange nav-wrapper">
+    <a href="#!/userdashboard" class="brand-logo right">BMN Inventory<span ng-if="APC.currentUser.admin === 0"><i>Super Admin</i></span><span ng-if="APC.currentUser.admin === 1"><i>Admin</i></span></a>
+    <ul>
+      <li><a class="blue" href="#!/add_order">Add Order</a></li>
+      <li><a href="#!/userdashboard">Dashboard</a></li>
+      <li><a href="#!/inventory">Inventory</a></li>
+      <li><a href="#!/orders">Orders</a></li>
+      <li><a ng-if="APC.currentUser.admin !== 2" href='#!/show_users'>Users</a></li>
+      <li><a href="#!/companies">Companies</a></li>
+      <li><a class="red" href="#!/" ng-click="APC.logout()">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="container">
+  <h2 class="center">Add New Product</h2>
+  <div class="center message_pop" ng-repeat='error in errors'>
+    <span class="red-text">{{error.message}}</span>
+  </div>
+  <form name='form' class="col s6 center" ng-submit='create()'>
+    <div class="row">
+      <div class="input-field col s12">
+        <input type="text" pattern='.{2,}' title='2 characters minimum' class="validate" ng-model='product.name' required>
+        <label>Product Name</label>
+      </div>
+    </div>
+    <div class="row">
+      <button class="btn waves-effect blue" type="submit" name="action">Add Product</button>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <a href='/#!/add_order/{{company._id}}'class="waves-effect orange btn">Back to Order</a>
+    </div>
+  </form>
+</div>

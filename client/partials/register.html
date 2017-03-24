@@ -1,0 +1,57 @@
+<div class="section no-pad-bot" id="index-banner">
+  <div class="container">
+    <br><br>
+    <h1 class="header center orange-text">Inventory Management</h1>
+    <div class="row center">
+      <h5 class="header col s12 light">Already Registered?</h5>
+      <a href="#!/" id="download-button" class="btn-large waves-effect waves-light orange">Login Here</a>
+    </div>
+    <div class="row center">
+      <h5 class="header col s12 light">OR</h5>
+      <h5 class="header col s12 light">Register Here</h5>
+    </div>
+    <br><br>
+    <form class="col" ng-submit="RC.createUser()" name="registrationForm">
+      <div class="row">
+        <div class="input-field col s6">
+          <i class="material-icons prefix">label</i>
+          <input id="first_name" type="text" class="validate" ng-model="RC.newUser.first_name" required>
+          <label for="first_name">First Name</label>
+        </div>
+        <div class="input-field col s6">
+          <i class="material-icons prefix">label</i>
+          <input id="last_name" type="text" class="validate" ng-model="RC.newUser.last_name" required>
+          <label for="last_name">Last Name</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s4">
+          <i class="material-icons prefix">email</i>
+          <input id="email" type="email" class="validate" ng-model="RC.newUser.email" required>
+          <label for="email">Email</label>
+        </div>
+        <div class="input-field col s4">
+          <i class="material-icons prefix">vpn_key</i>
+          <input id="password" type="password" class="validate" ng-model="RC.newUser.password" required>
+          <label for="password">Password</label>
+        </div>
+        <div class="input-field col s4">
+          <i class="material-icons prefix">phone</i>
+          <input id="icon_telephone" name="phone_number" type="text" class="validate" ng-model="RC.newUser.phone_number" required>
+          <label for="icon_telephone">Telephone</label>
+        </div>
+      </div>
+      <div class="row">
+      </div>
+      <div class="row center">
+        <button class="btn waves-effect waves-light orange" type="submit" name="action">Register
+        </button>
+      </div>
+    </form>
+    <div class='browser_default' ng-if="RC.success === false">
+      <ul ng-repeat="message in RC.error_messages">
+        <li class="error_messages">- {{message}}</li>
+      </ul>
+    </div>
+  </div>
+</div>

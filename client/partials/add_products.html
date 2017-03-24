@@ -1,0 +1,88 @@
+<nav>
+  <div class="orange nav-wrapper">
+    <a href="#!/userdashboard" class="brand-logo right">BMN Inventory<span ng-if="APSC.currentUser.admin === 0"><i>Super Admin</i></span><span ng-if="APSC.currentUser.admin === 1"><i>Admin</i></span></a>
+    <ul>
+      <li><a href="#!/userdashboard">Dashboard</a></li>
+      <li><a href="#!/inventory">Inventory</a></li>
+      <li><a href="#!/orders">Orders</a></li>
+      <li><a ng-if="APSC.currentUser.admin !== 2" href='#!/show_users'>Users</a></li>
+      <li><a href="#!/companies">Companies</a></li>
+      <li><a class="red" href="#!/" ng-click="APSC.logout()">Logout</a></li>
+    </ul>
+
+  </div>
+</nav>
+<div class="body_wrapper">
+<h3 class="center">Choose Product to buy from {{company.name}}</h3>
+
+<div class='red-text center'ng-repeat='error in errors'>
+  <p><span class='message_pop'>{{errors.message}}</span></p>
+</div>
+<form ng-submit='start()'>
+  <div class="input-field s6 center">
+    <div class="row">
+      <a href='/#!/add_product/{{company._id}}'class="waves-effect orange btn">Add New Product</a> &nbsp;&nbsp;&nbsp;<b>OR</b>&nbsp;&nbsp;&nbsp;
+      <select class='order_select browser-default' ng-options='product as product.name for product in company.products' ng-model='_product' tabindex="19">
+        <option value="" disabled selected>Select Product</option>
+    </select>
+    </div>
+    <div class="row">
+      <button class="btn waves-effect blue" type="submit" name="action">Add to Order</button>
+    </div>
+  </div>
+</form>
+<div ng-if="products.length > 0" class="row">
+  <div class="col s6 offset-s3">
+<h4>Products Selected: </h4>
+<form ng-submit='confirmOrder()'>
+  <div class="">
+<div ng-repeat='product in products track by $index' class="row">
+  <div class="input-field col s4">
+    <h5>{{$index+1}}. {{product.name}}</h5>
+  </div>
+  <div class="input-field col s4">
+    <input id="price" ng-model='order.buyPrice[$index]' type='number' step='any' min='.01' class='validate browser-default' required>
+    <label for="price">Buy Price</label>
+  </div>
+  <div class="input-field col s4">
+    <input id="quantity" ng-model='order.quantity[$index]' type='number' min='1' class='validate browser-default' required>
+    <label for="quantity">Quantity</label>
+  </div>
+</div>
+</div>
+<h4>Shipping Address:</h4>
+<div class="row">
+  <div class="input-field col s12">
+    <input type="text" class="validate" ng-model='order.address.name' required>
+    <label for="state">Name</label>
+  </div>
+</div>
+<div class="row">
+  <div class="input-field col s6">
+    <input id="company_stree" type="text" ng-model='order.address.street' class="validate" required>
+    <label for="order_stree">Street</label>
+  </div>
+  <div class="input-field col s6">
+    <input id="city" type="text" ng-model='order.address.city' class="validate" required>
+    <label for="city">City</label>
+  </div>
+</div>
+<div class="row">
+  <div class="input-field col s6">
+    <input id="state" type="text" ng-model='order.address.state' class="validate" required>
+    <label for="state">State</label>
+  </div>
+  <div class="input-field col s6">
+    <input id="zipcode" type="number" ng-model='order.address.zipcode' class="validate" required>
+    <label for="zipcode">Zip Code</label>
+  </div>
+</div>
+<div class="row">
+  <button class="btn waves-effect blue" type="submit" name="action">Confirm Order</button>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <a href='/#!/add_order'class="waves-effect orange btn">Back to Select Company</a>
+</div>
+</form>
+</div>
+</div>
+</div>

@@ -1,0 +1,41 @@
+<nav>
+  <div class="orange nav-wrapper">
+    <a href="#!/userdashboard" class="brand-logo right">BMN Inventory<span ng-if="OC2.currentUser.admin === 0"><i>Super Admin</i></span><span ng-if="OC2.currentUser.admin === 1"><i>Admin</i></span></a>
+    <ul>
+      <li><a class="blue" href="#!/add_order">Add Order</a></li>
+      <li><a href="#!/userdashboard">Dashboard</a></li>
+      <li><a href="#!/inventory">Inventory</a></li>
+      <li><a href="#!/orders">Orders</a></li>
+      <li><a ng-if="OC2.currentUser.admin !== 2" href='#!/show_users'>Users</a></li>
+      <li><a href="#!/companies">Companies</a></li>
+      <li><a class="red" href="#!/" ng-click="OC2.logout()">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="body_wrapper">
+<h4>Order #:<b> {{order._id}}</b></h4>
+<h5>Company:<b> {{order.sender.name}}</b></h5>
+<p>Placed By:<b> {{order.recipient.data.email}}</b></p>
+<table class="striped">
+  <thead>
+    <tr>
+      <th>Product Name</th>
+      <th>Quantity</th>
+      <th>Buy Price:</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="product in order.products">
+      <td ng-bind="product.name"></td>
+      <td ng-bind="product.quantity"></td>
+      <td ng-bind="product.buyPrice"></td>
+    </tr>
+  </tbody>
+</table>
+<div class="row center">
+  <br>
+  <h5>Order Recieved?</h5>
+  <a class="waves-effect blue btn" ng-click='receiveOrder()'>Yes</a>
+  <a class="waves-effect orange btn" href="#!/orders">No</a>
+</div>
+</div>

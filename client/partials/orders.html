@@ -1,0 +1,103 @@
+<nav>
+  <div class="orange nav-wrapper">
+    <a href="#!/userdashboard" class="brand-logo right">BMN Inventory<span ng-if="OC.currentUser.admin === 0"><i>Super Admin</i></span><span ng-if="OC.currentUser.admin === 1"><i>Admin</i></span></a>
+    <ul>
+      <li><a class="blue" href="#!/add_order">Add Order</a></li>
+      <li><a href="#!/userdashboard">Dashboard</a></li>
+      <li><a href="#!/inventory">Inventory</a></li>
+      <li class="active"><a href="#!/orders">Orders</a></li>
+      <li><a ng-if="OC.currentUser.admin !== 2" href='#!/show_users'>Users</a></li>
+      <li><a href="#!/companies">Companies</a></li>
+      <li><a class="red" href="#!/" ng-click="OC.logout()">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="body_wrapper">
+  <h2 class="center">Orders</h2>
+  <div ng-repeat='error in errors'>
+    <p>{{error.message}}</p>
+  </div>
+<div class="" ng-if="orders.length < 1">
+  <h4 class="center">No Pending Orders</h4>
+</div>
+<div class="" ng-if="orders.length > 0">
+  <div class="row">
+    <div class="input-field col s12">
+      <input id="email" type="text" ng-model="search">
+      <label for="email" data-error="wrong" data-success="right">Search Pending Orders</label>
+    </div>
+  </div>
+<div class="scroll">
+  <div class="row">
+    <div class="col s8 offset-s2">
+      <h4 class="center-title">Pending Orders</h4>
+      <div ng-repeat="order in orders">
+        <hr>
+        <div class="row">
+          <p>Order Placed By: <b>{{order.recipient.data.first_name}}</b></p>
+          <p>Number of Product(s):<b> {{order.products.length}}</b></p>
+          <p>Placed On:<b> {{order.createdAt}}</b></p>
+        </div>
+        <div class="row">
+          <a class="waves-effect blue btn" href="#!/orders/{{order._id}}">View Order</a>
+        </div>
+        <table class="striped">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Quantity</th>
+              <th>Sell Price:</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="product in order.products | filter: {name:search}">
+              <td ng-bind="product.name"></td>
+              <td ng-bind="product.quantity"></td>
+              <td ng-if="!product.sellPrice">Not Assigned</td>
+              <td ng-if="product.sellPrice" ng-bind="product.sellPrice"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+</div>
+
+  <div class="row">
+    <div class="col s8 offset-s2">
+      <h4 class="center-title">Recieved Orders</h4>
+      <div ng-repeat="order in ordersReceived">
+        <hr>
+        <div class="row">
+          <p>Order Placed By: <b>{{order.recipient.data.first_name}}</b></p>
+          <p>Number of Product(s):<b> {{order.products.length}}</b></p>
+          <p>Placed On:<b> {{order.createdAt}}</b></p>
+          <p>Received On:<b> {{order.updatedAt}}</b></p>
+        </div>
+        <div class="row">
+          <a class="waves-effect blue btn" href="#!/orders/{{order._id}}">View Order</a>
+        </div>
+        <table class="striped">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Quantity</th>
+              <th>Sell Price:</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="product in order.products | filter: {name:search}">
+              <td ng-bind="product.name"></td>
+              <td ng-bind="product.quantity"></td>
+              <td ng-if="!product.sellPrice">Not Assigned</td>
+              <td ng-if="product.sellPrice" ng-bind="product.sellPrice"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,84 @@
+<nav ng-if="IC.currentUser.admin !== 2">
+  <div class="orange nav-wrapper">
+    <a href="#!/userdashboard" class="brand-logo right">BMN Inventory<span ng-if="IC.currentUser.admin === 0"><i>Super Admin</i></span><span ng-if="IC.currentUser.admin === 1"><i>Admin</i></span></a>
+    <ul>
+      <li><a class="blue" href="#!/add_order">Add Order</a></li>
+      <li><a href="#!/userdashboard">Dashboard</a></li>
+      <li class="active"><a href="#!/inventory">Inventory</a></li>
+      <li><a href="#!/orders">Orders</a></li>
+      <li><a ng-if="IC.currentUser.admin !== 2" href='#!/show_users'>Users</a></li>
+      <li><a href="#!/companies">Companies</a></li>
+      <li><a class="red" href="#!/" ng-click="IC.logout()">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+<nav ng-if="IC.currentUser.admin === 2">
+  <div class="orange nav-wrapper">
+    <a class="brand-logo center">BMN Inventory</a>
+    <ul class="right">
+      <li><a href="#!/" ng-click="IC.logout()">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="body_wrapper">
+<div class="center" ng-if="IC.currentUser.admin === 2">
+  <h2>Welcome to BMN Inventory</h2>
+  <h5>Please take a look at our inventory and</h5>
+  <h5>Call (1-800-BMN-INVT) to order</h5>
+</div>
+
+<div class="" ng-if="IC.currentUser.admin !== 2">
+<h1 class='center'>Inventory</h1>
+</div>
+<p class="center" ng-if="messages.message"><span class='green-text message_pop'>{{messages.message}}</span></p>
+<div ng-repeat='error in errors'>
+  <p class="" ng-bind='error.message'></p>
+</div>
+
+<div class="row">
+  <div class="input-field col s12">
+    <input id="email" type="text" ng-model="search">
+    <label for="email" data-error="wrong" data-success="right">Search Inventory</label>
+  </div>
+</div>
+<div class="row">
+  <div class="col s8 offset-s2">
+    <table class="striped">
+      <thead>
+        <tr>
+          <th data-field="compname" ng-click='sortType="companyName"; sortReverse = !sortReverse'>Source Company</th>
+          <th data-field="name" ng-click="sortType='name'; sortReverse = !sortReverse">Name</th>
+          <th data-field="price" ng-click='sortType="sellPrice"; sortReverse = !sortReverse'>Price</th>
+          <th data-field="quantity" ng-click='sortType="quantity"; sortReverse = !sortReverse'>Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="product in products | filter:{name:search} track by $index">
+          <td class="bold" ng-bind="product._company.name"></td>
+          <td class="bold" ng-bind="product.name"></td>
+          <td ng-if='IC.currentUser.admin !== 2'>
+            <form ng-submit='updatePrice(product)'>
+              <div class="row">
+                <div class="input-field col s6">
+                  <input id="sellPrice" type="number" ng-model='product.sellPrice'>
+                </div>
+                <div class="valign-wrapper">
+                  <button class="valign btn waves-effect waves-light blue" type="submit" name="action">Update Sell Price
+                  </button>
+                </div>
+              </div>
+            </form>
+          </td>
+          <td ng-if='IC.currentUser.admin === 2'>
+            ${{product.sellPrice}}
+          </td>
+          <td ng-bind="product.quantity"></td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+
+</div>

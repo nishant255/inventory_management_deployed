@@ -1,0 +1,63 @@
+<nav>
+  <div class="orange nav-wrapper">
+    <a href="#!/userdashboard" class="brand-logo right">BMN Inventory<span ng-if="ACC.currentUser.admin === 0"><i>Super Admin</i></span><span ng-if="ACC.currentUser.admin === 1"><i>Admin</i></span></a>
+    <ul>
+      <li class="active"><a href="#!/userdashboard">Dashboard</a></li>
+      <li><a href="#!/inventory">Inventory</a></li>
+      <li><a href="#!/orders">Orders</a></li>
+      <li><a href="#!/add_order">Add Order</a></li>
+      <li><a ng-if="ACC.currentUser.admin !== 2" href='#!/show_users'>Users</a></li>
+      <li><a href="#!/companies">Companies</a></li>
+      <li><a href="#!/" ng-click="ACC.logout()">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="container">
+  <h1 class="center">Add New Company</h1>
+  <div class="row">
+  <form class="col s12" ng-submit='ACC.create()'>
+    <div class="row">
+      <div class="input-field col s4">
+        <input id="company_name" type="text" ng-model='company.name' class="validate">
+        <label for="company_name">Company Name</label>
+      </div>
+      <div class="input-field col s4">
+        <input id="email" type="email" ng-model='company.email' class="validate">
+        <label for="email">Email</label>
+      </div>
+      <div class="input-field col s4">
+        <input id="phone" type="number" ng-model='company.phone' class="validate">
+        <label for="phone">Phone Number</label>
+      </div>
+    </div>
+    <p><b>Company Address:</b></p>
+    <div class="row">
+      <div class="input-field col s6">
+        <input id="company_stree" type="text" ng-model='company.address.street' class="validate">
+        <label for="company_stree">Street</label>
+      </div>
+      <div class="input-field col s6">
+        <input id="city" type="text" ng-model='company.address.city' class="validate">
+        <label for="city">City</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <input id="state" type="text" ng-model='company.address.state' class="validate">
+        <label for="state">State</label>
+      </div>
+      <div class="input-field col s6">
+        <input id="zipcode" type="number" ng-model='company.address.zipcode' class="validate">
+        <label for="zipcode">Zip Code</label>
+      </div>
+    </div>
+    <div class="row right">
+      <button class="btn waves-effect blue" type="submit" name="action">Create Company</button>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <a href='/#!/add_order'class="waves-effect orange btn">Back to Order</a>
+
+    </div>
+  </form>
+</div>
+  </form>
+</div>

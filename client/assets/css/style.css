@@ -1,0 +1,58 @@
+a {
+  color: black
+}
+
+::-webkit-input-placeholder {
+  color:red;
+  text-align: center;
+}
+
+.scroll{
+  overflow: scroll;
+  height: 80%
+}
+
+.bold {
+  font-weight: bold;
+
+}
+
+.error_messages {
+  color: red;
+}
+
+
+.center_title {
+
+  text-align: center;
+}
+
+.body_wrapper {
+  margin: 30px;
+}
+
+.dash-text {
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 2px 2px 2px lightgrey;
+}
+
+.footer_parent {
+  text-align: center;
+  padding-top: 50px;
+  font-family: roboto;
+  font-style: italic;
+  font-size: 25px;
+}
+
+.message_pop {
+  background-color: lightgrey;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.order_select {
+  width: 250px;
+  text-align: center;
+  display: inline !important;
+}

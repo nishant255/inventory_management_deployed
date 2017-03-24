@@ -1,0 +1,43 @@
+<div class="section no-pad-bot" id="index-banner">
+  <div class="container">
+    <br><br>
+    <h1 class="header center orange-text">BMN Inventory</h1>
+    <div class="row center">
+      <h5 class="header col s12 light">Give your company the inventory software it deserves!</h5>
+    </div>
+    <div class="row center">
+      <a href="#!/register" id="download-button" class="btn-large waves-effect waves-light orange">Register Here!</a>
+    </div>
+    <div class="row center">
+      <h5 class="header col s12 light">OR</h5>
+      <h5 class="header col s12 light">Login Below</h5>
+    </div>
+    <br><br>
+    <form class="col" ng-submit="LC.login()">
+      <div class="row">
+        <div class="input-field col s6">
+          <i class="material-icons prefix">email</i>
+          <input id="email" type="email" class="validate" ng-model="LC.existingUser.email" required>
+          <label for="email">Email</label>
+        </div>
+        <div class="input-field col s6">
+          <i class="material-icons prefix">vpn_key</i>
+          <input id="password" type="password" ng-model="LC.existingUser.password" class="validate" required>
+          <label for="password">Password</label>
+        </div>
+      </div>
+      <div class="row center">
+        <button class="btn-large waves-effect blue" type="submit" name="action">Login
+      </div>
+      </button>
+    </form>
+    <div class='browser_default' ng-if="LC.success === false">
+      <ul ng-repeat="message in LC.error_messages">
+        <li class="error_messages">- {{message}}</li>
+      </ul>
+    </div>
+    <div class="row">
+      <p class="footer_parent">- Created By: Bion Howard, Marcus Sakoda, Nishant Patel</p>
+    </div>
+  </div>
+</div>

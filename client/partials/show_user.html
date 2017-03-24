@@ -1,0 +1,60 @@
+<nav>
+  <div class="orange nav-wrapper">
+    <a href="#!/userdashboard" class="brand-logo right">BMN Inventory<span ng-if="SUC.currentUser.admin === 0"><i>Super Admin</i></span><span ng-if="SUC.currentUser.admin === 1"><i>Admin</i></span></a>
+    <ul>
+      <li><a class="blue" href="#!/add_order">Add Order</a></li>
+      <li><a href="#!/userdashboard">Dashboard</a></li>
+      <li><a href="#!/inventory">Inventory</a></li>
+      <li><a href="#!/orders">Orders</a></li>
+      <li class="active"><a ng-if="SUC.currentUser.admin !== 2" href='#!/show_users'>Users</a></li>
+      <li><a href="#!/companies">Companies</a></li>
+      <li><a class="red" href="#!/" ng-click="SUC.logout()">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="body_wrapper">
+<div class='lighten-2'>
+  <h1 class="center_title">All Registered Users</h1>
+
+  <div class="row">
+    <div class="input-field col s12">
+      <input id="email" type="text" ng-model="filter_users">
+      <label for="email" data-error="wrong" data-success="right">Filter Users</label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col s8 offset-s2">
+      <table class="highlight table_margin">
+        <thead>
+          <tr>
+            <th data-field="first_name">First Name</th>
+            <th data-field="last_name">Last Name</th>
+            <th data-field="email">Email</th>
+            <th data-field="phone_number">Phone Number</th>
+            <th data-field="admin" name="admin" ng-if="SUC.currentUser.admin === 0">Admin Status</th>
+            <th data-field="adminAction" ng-if="SUC.currentUser.admin === 0">Admin Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="user in SUC.users | filter: filter_users | orderBy:'admin'">
+            <td>{{user.first_name | titleCase}}</td>
+            <td>{{user.last_name | titleCase}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.phone_number | tel}}</td>
+            <td ng-if="SUC.currentUser.admin === 0">
+              <span ng-if="user.admin === 0">Super Admin</span>
+              <span ng-if="user.admin === 1">Admin</span>
+              <span ng-if="user.admin === 2">User</span>
+            </td>
+            <td ng-if="SUC.currentUser.admin === 0">
+              <a class="waves-effect orange btn" ng-if="user.admin === 2" ng-click="SUC.makeAdmin(user._id)">Make Admin</a>
+              <a class="waves-effect orange btn" ng-if="user.admin === 1" ng-click="SUC.removeAdmin(user._id)">Remove Admin</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>
+</div>

@@ -1,0 +1,71 @@
+<nav>
+  <div class="orange nav-wrapper">
+    <a href="#!/userdashboard" class="brand-logo right">BMN Inventory<span  ng-if="DC.currentUser.admin === 0"><i>Super Admin</i></span><span ng-if="DC.currentUser.admin === 1"><i>Admin</i></span></a>
+    <ul>
+      <li><a class="blue" href="#!/add_order">Add Order</a></li>
+      <li class="active"><a href="#!/userdashboard">Dashboard</a></li>
+      <li><a href="#!/inventory">Inventory</a></li>
+      <li><a href="#!/orders">Orders</a></li>
+      <li><a ng-if="DC.currentUser.admin !== 2" href='#!/show_users'>Users</a></li>
+      <li><a href="#!/companies">Companies</a></li>
+      <li><a class="red" href="#!/" ng-click="DC.logout()">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+<div class='center body_wrapper'>
+<div class='lighten-2'>
+  <h1 class="center_title">Dashboard</h1>
+  <div class="row">
+
+  <p class="center green-text">{{message.message}}</p>
+  <h4><span class="orange white-text dash-text">Total Inventory Worth: <span class=" light-green-text text-darken-4">${{totalvalue}}</span></span></h4>
+</div>
+  <div class="row">
+   <div class="col s6">
+     <h4>Incoming Shipments</h4>
+     <div style="max-height:350px; overflow:scroll" >
+
+       <table class="striped">
+         <thead>
+           <tr>
+             <th data-field="id">Email</th>
+             <th data-field="name">Quantity</th>
+             <th data-field="price">Date</th>
+             <th data-field="action">Action</th>
+           </tr>
+         </thead>
+         <tbody>
+           <tr ng-repeat="order in orders | orderBy:createdAt:isReversed">
+             <td>{{order.recipient.data.email}}</td>
+             <td>{{order.numProducts}}</td>
+             <td>{{order.createdAt | date:'medium'}}</td>
+             <td><a class="btn blue" href='/#!/orders/{{order._id}}'>View Order</a></td>
+           </tr>
+         </tbody>
+       </table>
+     </div>
+     <br>
+     <a href="#!/orders" class="btn blue">View All Orders</a>
+   </div>
+   <div class="col s6">
+     <h4>Current Inventory</h4>
+     <table class="striped">
+  <thead>
+    <tr>
+        <th class="center" data-field="id">Product Name</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr ng-repeat="product in products | orderBy:createdAt:!isReversed |
+     limitTo:6">
+      <td class="center">{{product.name}}</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<a href="#!/inventory" class="btn blue">View Whole Inventory</a>
+   </div>
+ </div>
+</div>
+</div>
