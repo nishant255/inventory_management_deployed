@@ -1,5 +1,3 @@
-console.log("Loading server.js");
-
 var express  = require( 'express' ),
     bp       = require('body-parser'),
     path     = require( 'path' ),

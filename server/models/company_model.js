@@ -1,4 +1,3 @@
-console.log("Loading company_model.js");
 var mongoose = require('mongoose'),
     Schema   = mongoose.Schema;
 
