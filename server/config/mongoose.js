@@ -5,8 +5,9 @@ var mongoose    = require('mongoose'),
     path        = require('path'),
     db_name     = "inventory_db_2", // <<<<<<<<<<<< CHANGE DB NAME >>>>>>>>>>>>
     reg         = new RegExp( ".js$", "i" ),
-    dbURI       = 'mongodb://localhost/' + db_name;
-    models_path = path.join( __dirname, "../models"),
+    dbURI       = 'mongodb://localhost/' + db_name,
+    models_path = path.join( __dirname, "../models");
+
 
 mongoose.connect(process.env.MONGOLAB_URI || dbURI);
 mongoose.Promise = global.Promise;

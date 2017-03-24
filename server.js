@@ -21,6 +21,6 @@ require(path.join(root, './server/config/mongoose.js'));
 require(path.join(root, './server/config/routes.js'))(app);
 require('./server/config/passport')(passport);
 
-app.listen(port, function(){
+app.listen(process.env.PORT || port, function(){
   console.log(`listening for ${ project } on port ${ port }`);
 });
