@@ -17,6 +17,7 @@ function UserController() {
     decon.log("Creating User");
     decon.log(req.body);
     error_messages = [];
+    success = true;
     if (!req.body.first_name) {
       decon.log("No First Name");
       error_messages.push("First Name is Required");
@@ -106,7 +107,7 @@ function UserController() {
     decon.log("Logging User");
     decon.log(req.body);
     error_messages = [];
-    var success = true
+    success = true
     if (!req.body.email) {
       decon.log("No email");
       error_messages.push("Email is Required");

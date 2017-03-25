@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="069df073-2e1e-440f-a532-2f8e7703bb3b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/index.html" afterPath="$PROJECT_DIR$/client/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/partials/dashboard.html" afterPath="$PROJECT_DIR$/client/partials/dashboard.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/partials/order.html" afterPath="$PROJECT_DIR$/client/partials/order.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/debugLog.js" afterPath="$PROJECT_DIR$/debugLog.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/controllers/orders.js" afterPath="$PROJECT_DIR$/server/controllers/orders.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -225,12 +229,12 @@
       <workItem from="1490339124261" duration="306000" />
       <workItem from="1490339447817" duration="2121000" />
       <workItem from="1490387583029" duration="104000" />
-      <workItem from="1490400750637" duration="13000" />
+      <workItem from="1490400750637" duration="193000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2544000" />
+    <option name="totallyTimeSpent" value="2724000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">

@@ -23,7 +23,12 @@
   <div class="row">
    <div class="col s6">
      <h4>Incoming Shipments</h4>
-     <div style="max-height:350px; overflow:scroll" >
+     <div ng-if="orders.length === 0">
+       <br>
+       <h5>No Incoming Shipments</h5>
+       <br>
+     </div>
+     <div style="max-height:350px; overflow:scroll" ng-if="orders.length !== 0" >
 
        <table class="striped">
          <thead>

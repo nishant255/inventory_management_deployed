@@ -7,7 +7,7 @@ app.controller('dashboardController', ['$scope', '$location', 'productFactory', 
   $scope.products = [];
   $scope.isReversed = true;
   $scope.totalvalue = 0;
-  $scope.message = {}
+  $scope.message = {};
   // _this.currentUser = {};
 
   // -------------------------------------------------------------------------
@@ -47,8 +47,8 @@ app.controller('dashboardController', ['$scope', '$location', 'productFactory', 
 
   orderFactory.getMessage(function(message){
     console.log('recieved success message',message);
-    $scope.message = message
-  })
+    $scope.message = message;
+  });
 
   productFactory.getvalue(function(value){
     $scope.totalvalue = value;
