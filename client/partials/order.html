@@ -32,7 +32,7 @@
     </tr>
   </tbody>
 </table>
-<div class="row center">
+<div class="row center" ng-if="order.received === false" >
   <br>
   <h5>Order Recieved?</h5>
   <a class="waves-effect blue btn" ng-click='receiveOrder()'>Yes</a>

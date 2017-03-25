@@ -1,6 +1,6 @@
 
 function debugController() {
-  var debug = false;
+  var debug = true;
   this.log =  function (String) {
     if (debug) {
       console.log(String);
