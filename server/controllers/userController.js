@@ -17,7 +17,6 @@ function UserController() {
     decon.log("Creating User");
     decon.log(req.body);
     error_messages = [];
-    success = true;
     if (!req.body.first_name) {
       decon.log("No First Name");
       error_messages.push("First Name is Required");
@@ -92,11 +91,12 @@ function UserController() {
       if (err) {
         decon.log("Email already Registered");
         error_messages.push("Email Already Registered! Please Login.");
-        res.json({success: false, error_messages: error_messages});
+        res.json({success: success, error_messages: error_messages});
         decon.log(err);
         throw err;
       }
-      res.json({success: true, user: user});
+      success = true;
+      res.json({success: success, user: user});
     });
   };
 
@@ -107,7 +107,6 @@ function UserController() {
     decon.log("Logging User");
     decon.log(req.body);
     error_messages = [];
-    success = true
     if (!req.body.email) {
       decon.log("No email");
       error_messages.push("Email is Required");
@@ -129,7 +128,7 @@ function UserController() {
       success = false;
     }
     if (!success) {
-      res.json({success: false, error_messages: error_messages});
+      res.json({success: success, error_messages: error_messages});
       return;
     }
     User.findOne({
@@ -141,15 +140,16 @@ function UserController() {
       }
       if (!user) {
             error_messages.push("Invalid Email or Password.");
-            res.json({success: false, error_messages: error_messages});
+            res.json({success: success, error_messages: error_messages});
       } else {
         user.comparePassword(req.body.password, function (err, isMatch) {
           if (isMatch && !err) {
             // var token = jwt.en
-            res.json({success: true, user:user});
+            success = true;
+            res.json({success: success, user:user});
           } else {
             error_messages.push("Invalid Email or Password.");
-            res.json({success: false, error_messages: error_messages});
+            res.json({success: success, error_messages: error_messages});
           }
         });
       }
@@ -162,7 +162,7 @@ function UserController() {
         decon.log(err);
       }
       if (!user) {
-        decon.log("Super Admin Not Found! Creating one at email: a@admin.com pass: asdf");
+        console.log("Super Admin Not Found! Creating one at email: a@admin.com pass: asdf");
         var newAdmin = new User({
           first_name: 'admin',
           last_name: 'admin',
@@ -181,7 +181,7 @@ function UserController() {
           }
         });
       } else {
-        decon.log("Super Admin Available @ email: a@admin.com pass: asdf");
+        console.log("Super Admin Available @ email: a@admin.com pass: asdf");
       }
     });
 
@@ -190,7 +190,7 @@ function UserController() {
         decon.log(err);
       }
       if (!user) {
-        decon.log("Admin Not Found! Creating one at email: aa@admin.com pass: asdf");
+        console.log("Admin Not Found! Creating one at email: aa@admin.com pass: asdf");
         var newAdmin = new User({
           first_name: 'admin',
           last_name: 'admin',
@@ -209,7 +209,7 @@ function UserController() {
           }
         });
       } else {
-        decon.log("Admin Available @ email: aa@admin.com pass: asdf");
+        console.log("Admin Available @ email: aa@admin.com pass: asdf");
       }
     });
   };
