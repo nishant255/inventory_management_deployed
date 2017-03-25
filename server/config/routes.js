@@ -1,4 +1,3 @@
-console.log("Loading routes.js");
 var path         = require('path'),
     companies = require('./../controllers/companies.js');
     userController = require('./../controllers/userController.js');

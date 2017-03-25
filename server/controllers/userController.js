@@ -1,4 +1,5 @@
-console.log("Loading Serverside userController.js");
+var decon = require('./../../debugLog.js');
+decon.log("Loading Serverside userController.js");
 
 var mongoose = require('mongoose'),
     User = mongoose.model('User');
@@ -13,64 +14,64 @@ function UserController() {
   //                      Create or Return Existing User
   // -------------------------------------------------------------------------
   _this.createUser = function (req, res) {
-    console.log("Creating User");
-    console.log(req.body);
+    decon.log("Creating User");
+    decon.log(req.body);
     error_messages = [];
     if (!req.body.first_name) {
-      console.log("No First Name");
+      decon.log("No First Name");
       error_messages.push("First Name is Required");
       success = false;
     }
     if (req.body.first_name.length < 2) {
-      console.log("First Name has to be 2 or more Characters");
+      decon.log("First Name has to be 2 or more Characters");
       error_messages.push("First Name has to be 2 or more Characters");
       success = false;
     }
     if (!req.body.last_name) {
-      console.log("No Last Name");
+      decon.log("No Last Name");
       error_messages.push("Last Name is Required");
       success = false;
     }
     if (req.body.last_name.length < 2) {
-      console.log("Last Name has to be 2 or more Characters");
+      decon.log("Last Name has to be 2 or more Characters");
       error_messages.push("Last Name has to be 2 or more Characters");
       success = false;
     }
     if (!req.body.email) {
-      console.log("No email");
+      decon.log("No email");
       error_messages.push("Email is Required");
       success = false;
     }
     if (req.body.email.length < 5) {
-      console.log("Email has to be 5 or more Characters");
+      decon.log("Email has to be 5 or more Characters");
       error_messages.push("Email has to be 5 or more Characters");
       success = false;
     }
     if (!req.body.password) {
-      console.log("No password");
+      decon.log("No password");
       error_messages.push("Password is Required");
       success = false;
     }
     if (req.body.password.length < 4) {
-      console.log("Password has to be 4 or more Characters");
+      decon.log("Password has to be 4 or more Characters");
       error_messages.push("Password has to be 4 or more Characters");
       success = false;
     }
     if (!req.body.phone_number) {
-      console.log("No Phone Number");
+      decon.log("No Phone Number");
       error_messages.push("Phone Number is Required");
       success = false;
     }
     if (!/^\d+$/.test(req.body.phone_number)) {
-      console.log("Phone Number Should Contain only Digits");
+      decon.log("Phone Number Should Contain only Digits");
       error_messages.push("Phone Number can Contain Only Numbers");
       success = false;
     }
     if (String(req.body.phone_number).length !== 10) {
-      console.log("Phone Number has to be 10 Digits");
-      console.log(typeof(req.body.phone_number));
-      console.log(req.body.phone_number.length);
-      console.log(req.body.phone_number);
+      decon.log("Phone Number has to be 10 Digits");
+      decon.log(typeof(req.body.phone_number));
+      decon.log(req.body.phone_number.length);
+      decon.log(req.body.phone_number);
       error_messages.push("Phone Number has to be 10 Digits");
       success = false;
     }
@@ -88,10 +89,10 @@ function UserController() {
     });
     newCreatedUser.save(function (err, user) {
       if (err) {
-        console.log("Email already Registered");
+        decon.log("Email already Registered");
         error_messages.push("Email Already Registered! Please Login.");
         res.json({success: false, error_messages: error_messages});
-        console.log(err);
+        decon.log(err);
         throw err;
       }
       res.json({success: true, user: user});
@@ -102,27 +103,27 @@ function UserController() {
   //                      Create or Return Existing User
   // -------------------------------------------------------------------------
   _this.loginUser = function (req, res) {
-    console.log("Logging User");
-    console.log(req.body);
+    decon.log("Logging User");
+    decon.log(req.body);
     error_messages = [];
     var success = true
     if (!req.body.email) {
-      console.log("No email");
+      decon.log("No email");
       error_messages.push("Email is Required");
       success = false;
     }
     if (req.body.email.length < 5) {
-      console.log("Email has to be 5 or more Characters");
+      decon.log("Email has to be 5 or more Characters");
       error_messages.push("Email has to be 5 or more Characters");
       success = false;
     }
     if (!req.body.password) {
-      console.log("No password");
+      decon.log("No password");
       error_messages.push("Password is Required");
       success = false;
     }
     if (req.body.password.length < 4) {
-      console.log("Password has to be 4 or more Characters");
+      decon.log("Password has to be 4 or more Characters");
       error_messages.push("Password has to be 4 or more Characters");
       success = false;
     }
@@ -134,7 +135,7 @@ function UserController() {
       email: req.body.email
     }, function (err, user) {
       if (err) {
-        console.log(err);
+        decon.log(err);
         throw err;
       }
       if (!user) {
@@ -157,10 +158,10 @@ function UserController() {
   var createAdminUser = function () {
     User.findOne({email:"a@admin.com"}, function (err, user) {
       if (err) {
-        console.log(err);
+        decon.log(err);
       }
       if (!user) {
-        console.log("Super Admin Not Found! Creating one at email: a@admin.com pass: asdf");
+        decon.log("Super Admin Not Found! Creating one at email: a@admin.com pass: asdf");
         var newAdmin = new User({
           first_name: 'admin',
           last_name: 'admin',
@@ -171,24 +172,24 @@ function UserController() {
         });
         newAdmin.save(function (err, user) {
           if (err) {
-            console.log("Email already Registered");
+            decon.log("Email already Registered");
             error_messages.push("Email Already Registered! Please Login.");
             res.json({success: false, error_messages: error_messages});
-            console.log(err);
+            decon.log(err);
             throw err;
           }
         });
       } else {
-        console.log("Super Admin Available @ email: a@admin.com pass: asdf");
+        decon.log("Super Admin Available @ email: a@admin.com pass: asdf");
       }
     });
 
     User.findOne({email:"aa@admin.com"}, function (err, user) {
       if (err) {
-        console.log(err);
+        decon.log(err);
       }
       if (!user) {
-        console.log("Admin Not Found! Creating one at email: aa@admin.com pass: asdf");
+        decon.log("Admin Not Found! Creating one at email: aa@admin.com pass: asdf");
         var newAdmin = new User({
           first_name: 'admin',
           last_name: 'admin',
@@ -199,15 +200,15 @@ function UserController() {
         });
         newAdmin.save(function (err, user) {
           if (err) {
-            console.log("Email already Registered");
+            decon.log("Email already Registered");
             error_messages.push("Email Already Registered! Please Login.");
             res.json({success: false, error_messages: error_messages});
-            console.log(err);
+            decon.log(err);
             throw err;
           }
         });
       } else {
-        console.log("Admin Available @ email: aa@admin.com pass: asdf");
+        decon.log("Admin Available @ email: aa@admin.com pass: asdf");
       }
     });
   };
@@ -217,20 +218,20 @@ function UserController() {
   //                           Make Admin
   // -------------------------------------------------------------------------
   _this.makeAdmin = function (req, res) {
-    console.log(req.params.id);
+    decon.log(req.params.id);
     User.findOne({_id:req.params.id}, function (err, user) {
       if (err) {
-        console.log("Error While Find User for Admin");
-        console.log(err);
+        decon.log("Error While Find User for Admin");
+        decon.log(err);
       }
-      console.log(user);
+      decon.log(user);
       user.admin = 1;
       user.save(function (err, user) {
         if (err) {
-          console.log("Error While Find User for Admin");
-          console.log(err);
+          decon.log("Error While Find User for Admin");
+          decon.log(err);
         }
-        console.log("successfully made Admin", user);
+        decon.log("successfully made Admin", user);
         res.json(user);
       });
     });
@@ -239,20 +240,20 @@ function UserController() {
   //                           Remove Admin
   // -------------------------------------------------------------------------
   _this.removeAdmin = function (req, res) {
-    console.log(req.params.id);
+    decon.log(req.params.id);
     User.findOne({_id:req.params.id}, function (err, user) {
       if (err) {
-        console.log("Error While Find User for Admin");
-        console.log(err);
+        decon.log("Error While Find User for Admin");
+        decon.log(err);
       }
-      console.log(user);
+      decon.log(user);
       user.admin = 2;
       user.save(function (err, user) {
         if (err) {
-          console.log("Error While Find User for Admin");
-          console.log(err);
+          decon.log("Error While Find User for Admin");
+          decon.log(err);
         }
-        console.log("successfully made Admin", user);
+        decon.log("successfully made Admin", user);
         res.json(user);
       });
     });
@@ -264,8 +265,8 @@ function UserController() {
   _this.getUser = function (req, res) {
     User.findOne({_id: req.params.id}, function (err, user) {
       if (err) {
-        console.log("Error While Find Single User");
-        console.log(err);
+        decon.log("Error While Find Single User");
+        decon.log(err);
       } else {
         res.json(user);
       }
@@ -278,8 +279,8 @@ function UserController() {
   _this.getAllUser = function (req, res) {
     User.find({}, function (err, users) {
       if (err) {
-        console.log("Error While finding all the users");
-        console.log(err);
+        decon.log("Error While finding all the users");
+        decon.log(err);
       } else {
         res.json(users);
       }
@@ -290,13 +291,13 @@ function UserController() {
   // -------------------------------------------------------------------------
 
   _this.getUser = function(req,res){
-    console.log('got to the server controller with user id',req.params.id);
+    decon.log('got to the server controller with user id',req.params.id);
     User.findById(req.params.id,function(err,result){
       if(err){
-        console.log('there was an error finding user',err);
+        decon.log('there was an error finding user',err);
         res.json(err);
       } else {
-        console.log('successfully found user',result);
+        decon.log('successfully found user',result);
         res.json(result);
       }
     });

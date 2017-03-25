@@ -1,4 +1,3 @@
-console.log("Loading user_model.js");
 var mongoose = require('mongoose'),
     Schema   = mongoose.Schema,
     bcrypt   = require('bcrypt');

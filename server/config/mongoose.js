@@ -1,4 +1,5 @@
-console.log("Loading mongoose.js");
+var decon = require('./../../debugLog.js');
+decon.log("Loading mongoose.js");
 
 var mongoose    = require('mongoose'),
     fs          = require ('fs'),
@@ -13,7 +14,7 @@ mongoose.connect(process.env.MONGOLAB_URI || dbURI);
 mongoose.Promise = global.Promise;
 
 mongoose.connection.on('connected', function () {
-  console.log(`Mongoose default connection open to ${ dbURI }`);
+  decon.log(`Mongoose default connection open to ${ dbURI }`);
 });
 
 mongoose.connection.on( 'error', function ( err ) {
@@ -21,12 +22,12 @@ mongoose.connection.on( 'error', function ( err ) {
 });
 
 mongoose.connection.on( 'disconnected', function () {
-  console.log( 'Mongoose default connection disconnected' );
+  decon.log( 'Mongoose default connection disconnected' );
 });
 
 process.on( 'SIGINT', function() {
   mongoose.connection.close( function () {
-    console.log( 'Mongoose default connection disconnected through app termination' );
+    decon.log( 'Mongoose default connection disconnected through app termination' );
     process.exit( 0 );
   });
 });
