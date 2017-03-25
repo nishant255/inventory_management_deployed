@@ -76,7 +76,8 @@ function UserController() {
       success = false;
     }
     if (!success) {
-      res.json({success: false, error_messages: error_messages});
+      res.json({success: success, error_messages: error_messages});
+      success = true;
       return;
     }
     var newCreatedUser = new User({
@@ -129,6 +130,7 @@ function UserController() {
     }
     if (!success) {
       res.json({success: success, error_messages: error_messages});
+      success = true;
       return;
     }
     User.findOne({
@@ -141,6 +143,7 @@ function UserController() {
       if (!user) {
             error_messages.push("Invalid Email or Password.");
             res.json({success: success, error_messages: error_messages});
+            success = true;
       } else {
         user.comparePassword(req.body.password, function (err, isMatch) {
           if (isMatch && !err) {
@@ -150,6 +153,7 @@ function UserController() {
           } else {
             error_messages.push("Invalid Email or Password.");
             res.json({success: success, error_messages: error_messages});
+            success = true;
           }
         });
       }
