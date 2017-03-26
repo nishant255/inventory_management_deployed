@@ -72,13 +72,13 @@ function OrdersController() {
     });
   };
   _this.receive = function(req,res){
-    decon.log('got to the server controller with the order id and recipient' + req.params.id + req.body);
+    console.log('got to the server controller with the order id and recipient', req.params.id, req.body);
     Order.findByIdAndUpdate(req.params.id,{$set: {recipient:req.body, received:true}}, function(err,result){
       if(err){
         decon.log('there was an error updating order',err);
         res.json(err);
       } else {
-        decon.log('successfully updated order',result);
+        decon.log('successfully updated order', result);
         res.json(result);
       }
     });
