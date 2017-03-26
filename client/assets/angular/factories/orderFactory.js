@@ -66,7 +66,7 @@ app.factory('orderFactory', ['$http', function ($http) {
     };
     this.receiveOrder = function(order,recipient,callback){
       console.log('got to the order factory with order, and recipient',order,recipient);
-      $http.post('/orders/receive/${order._id}',recipient).then(function(returned_data){
+      $http.post('/orders/receive/' + order._id,recipient).then(function(returned_data){
         console.log('returned from the server with the updated order',returned_data.data);
         callback(returned_data);
       });
