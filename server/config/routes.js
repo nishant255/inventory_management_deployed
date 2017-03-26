@@ -21,7 +21,8 @@ module.exports = function (app) {
 
   app.get('/user/:id', userController.getUser);
   app.get('/users', userController.getAllUser);
-  app.get('/user/getUser/:id', userController.getUser);
+  app.get('/user/getUser/id/:id', userController.getUserUsingID);
+  app.get('/user/getUser/email/:email', userController.getUserUsingEmail);
   app.get('/user/makeAdmin/:id', userController.makeAdmin);
   app.get('/user/removeAdmin/:id', userController.removeAdmin);
   app.post('/user', userController.createUser);
