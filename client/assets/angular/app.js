@@ -2,7 +2,7 @@ console.log("Loading Master App JS");
 
 var app = angular.module('app', ['ngRoute', 'ngMessages', 'ngCookies']);
 
-app.config([ function ($routeProvider, $locationProvider) {
+app.config(function ($routeProvider, $locationProvider) {
 
   $routeProvider
     .when('/', {
@@ -95,6 +95,6 @@ app.config([ function ($routeProvider, $locationProvider) {
       redirectTo: '/'
     });
 
-  // $locationProvider.html5Mode(true);
+  $locationProvider.html5Mode(true);
 
-}]);
+});
