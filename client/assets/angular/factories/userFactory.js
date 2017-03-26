@@ -76,7 +76,7 @@ app.factory('userFactory', ['$http', '$cookieStore', function ($http, $cookieSto
     // -------------------------------------------------------------------------
     _this.getUser = function (callback) {
       user_id = $cookieStore.get('user_id');
-      $http.get('/user/getUser/'+user_id).then( function(dataFromServer) {
+      $http.get('/user/getUser/id/'+user_id).then( function(dataFromServer) {
         console.log(dataFromServer.data);
         user = dataFromServer.data;
         if (typeof(callback) === 'function') {

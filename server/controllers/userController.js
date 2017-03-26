@@ -267,8 +267,21 @@ function UserController() {
   // -------------------------------------------------------------------------
   //                           Give One User
   // -------------------------------------------------------------------------
-  _this.getUser = function (req, res) {
+  _this.getUserUsingID = function (req, res) {
     User.findOne({_id: req.params.id}, function (err, user) {
+      if (err) {
+        decon.log("Error While Find Single User");
+        decon.log(err);
+      } else {
+        res.json(user);
+      }
+    });
+  };
+  // -------------------------------------------------------------------------
+  //                           Give One User Using ID
+  // -------------------------------------------------------------------------
+  _this.getUserUsingEmail = function (req, res) {
+    User.findOne({email: req.params.email}, function (err, user) {
       if (err) {
         decon.log("Error While Find Single User");
         decon.log(err);
