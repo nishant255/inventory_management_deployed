@@ -10,9 +10,8 @@ var path         = require('path'),
 
 
 module.exports = function (app) {
-
-  app.get('/cool', function(request, response) {
-  response.send(cool());
+    app.get('/cool', function(request, response) {
+      response.send("COOL");
 });
   app.get('/companies/:company_id', companies.findCompany);
   app.post('/companies/:company_id/addProduct', companies.addProduct);

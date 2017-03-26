@@ -7,14 +7,15 @@ var mongoose    = require('mongoose'),
     db_name     = "inventory_db_2", // <<<<<<<<<<<< CHANGE DB NAME >>>>>>>>>>>>
     reg         = new RegExp( ".js$", "i" ),
     dbURI       = 'mongodb://localhost/' + db_name,
-    models_path = path.join( __dirname, "../models");
+    models_path = path.join( __dirname, "../models"),
+    mongoURI    = 'mongodb://nishant255:baps1920@ds117830.mlab.com:17830/inventory_db_2';
 
 
 mongoose.connect(process.env.MONGOLAB_URI || dbURI);
 mongoose.Promise = global.Promise;
 
 mongoose.connection.on('connected', function () {
-  decon.log(`Mongoose default connection open to ${ dbURI }`);
+  console.log(`Mongoose default connection open to ${ dbURI }`);
 });
 
 mongoose.connection.on( 'error', function ( err ) {
@@ -22,12 +23,12 @@ mongoose.connection.on( 'error', function ( err ) {
 });
 
 mongoose.connection.on( 'disconnected', function () {
-  decon.log( 'Mongoose default connection disconnected' );
+  console.log( 'Mongoose default connection disconnected' );
 });
 
 process.on( 'SIGINT', function() {
   mongoose.connection.close( function () {
-    decon.log( 'Mongoose default connection disconnected through app termination' );
+    console.log( 'Mongoose default connection disconnected through app termination' );
     process.exit( 0 );
   });
 });
