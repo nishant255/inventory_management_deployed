@@ -1,5 +1,6 @@
 var decon = require('./../../debugLog.js');
 decon.log("Loading Serverside orders.js");
+var productsController = require('./products.js');
 
 var mongoose = require('mongoose'),
     Order = mongoose.model('Order');
@@ -84,6 +85,7 @@ function OrdersController() {
               decon.log('there was an error updating order',err);
               res.json(err);
             } else {
+              productsController.receiveOrderFromServer(result);
               var message = "Successfully Updated Order";
               var success = true;
               decon.log('successfully updated order', result);
