@@ -47,14 +47,14 @@ function OrdersController() {
       }
     });
   };
-  _this.create = function (req, res) {
+  _this.create = function (req, res) {    
     decon.log('got to the server controller with order data ',req.body);
     Order.create(req.body,function(err,result){
       if(err){
         decon.log('there was an error creating order ',err);
         res.json(err);
       } else {
-        decon.log('successfully created order ',result);
+        decon.log('successfully created order ',result.recipient.data);
         res.json(result);
       }
     });
