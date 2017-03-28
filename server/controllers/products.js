@@ -133,32 +133,37 @@ function ProductsController() {
             } else {
               decon.log('we did it! TEH!',result);
             }
-          })
+          });
         }
-      })
-      product_num ++
+      });
+      product_num ++;
       if(product_num<products.length){
-        _this.updateloop(products,product_num)
+        _this.updateloop(products,product_num);
       }
-    })
-  }
+    });
+  };
   _this.receiveOrder = function(req,res){
-    var product_num = 0
-    var order = req.body
+    var product_num = 0;
+    var order = req.body;
     decon.log('got to the server with the order!',order);
-    _this.updateloop(order.products,product_num)
-  }
+    _this.updateloop(order.products,product_num);
+  };
+  _this.receiveOrderFromServer = function(order){
+    var product_num = 0;    
+    decon.log('got to the server with the order!',order);
+    _this.updateloop(order.products,product_num);
+  };
   _this.update = function(req,res){
     decon.log('got to the server with the product',req.body);
     Product.findByIdAndUpdate(req.body._id,{$set: {sellPrice:req.body.sellPrice}}, function(err,result){
       if(err){
         decon.log('there was an error updating order',err);
-        res.json(err)
+        res.json(err);
       } else {
         decon.log('successfully updated order',result);
-        res.json(result)
+        res.json(result);
       }
-    })
+    });
     // Product.findOne(({_id:req.body._id}, function (err, product) {
     //   if (err) {
     //     decon.log('there was an error finding product',err);
@@ -185,7 +190,7 @@ function ProductsController() {
     //     res.json(result)
     //   }
     // })
-  }
+  };
 }
 
 module.exports = new ProductsController();

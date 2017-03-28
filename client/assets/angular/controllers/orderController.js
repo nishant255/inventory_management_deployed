@@ -57,9 +57,9 @@ app.controller('orderController', ['$scope', '$location', 'orderFactory', '$cook
         console.log('there were errors',$scope.errors = order_data.data.errors);
       } else {
         //need to update products with our new products
-        productFactory.receiveOrder(order_data.data,function(result_data){
-          console.log('returned from the factory with the result data');
-        });
+        // productFactory.receiveOrder(order_data.data.order,function(result_data){
+        //   console.log('returned from the factory with the result data');
+        // });
         $location.url('/inventory');
       }
     });
