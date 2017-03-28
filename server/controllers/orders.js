@@ -47,7 +47,7 @@ function OrdersController() {
       }
     });
   };
-  _this.create = function (req, res) {    
+  _this.create = function (req, res) {
     decon.log('got to the server controller with order data ',req.body);
     Order.create(req.body,function(err,result){
       if(err){
@@ -73,13 +73,25 @@ function OrdersController() {
   };
   _this.receive = function(req,res){
     console.log('got to the server controller with the order id and recipient', req.params.id, req.body);
-    Order.findByIdAndUpdate(req.params.id,{$set: {recipient:req.body, received:true}}, function(err,result){
-      if(err){
-        decon.log('there was an error updating order',err);
+    Order.findById(req.params.id, function (err, order) {
+      if (err) {
+        decon.log('there was an error Finding order',err);
         res.json(err);
       } else {
-        decon.log('successfully updated order', result);
-        res.json(result);
+        if (!order.received) {
+          Order.findByIdAndUpdate(req.params.id,{$set: {recipient:req.body, received:true}}, function(err,result){
+            if(err){
+              decon.log('there was an error updating order',err);
+              res.json(err);
+            } else {
+              decon.log('successfully updated order', result);
+              res.json(result);
+            }
+          });
+        } else {
+          decon.log('Order has been already received.');
+          res.json('Order has been already received.');
+        }
       }
     });
   };
