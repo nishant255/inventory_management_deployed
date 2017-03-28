@@ -84,17 +84,17 @@ function OrdersController() {
               decon.log('there was an error updating order',err);
               res.json(err);
             } else {
+              var message = "Successfully Updated Order";
+              var success = true;
               decon.log('successfully updated order', result);
-              result.message = "Successfully Updated Order";
-              result.success = true;
-              res.json(result);
+              res.json({success: success, message: message, order: result});
             }
           });
         } else {
-          decon.log('Order has been already received.');
-          order.message = "Order has been already received.";
-          order.success = true;
-          res.json(order);
+          var message = "Order has been already received.";
+          var success = true;
+          decon.log('Order has been already received.', order);
+          res.json({success: success, message: message, order: order});
         }
       }
     });
