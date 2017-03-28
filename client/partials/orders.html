@@ -34,7 +34,7 @@
       <div ng-repeat="order in orders">
         <hr>
         <div class="row">
-          <p>Order Placed By: <b>{{order.recipient.data.first_name}}</b></p>
+          <p>Order Placed By: <b>{{order.recipient.first_name}}</b></p>
           <p>Number of Product(s):<b> {{order.products.length}}</b></p>
           <p>Placed On:<b> {{order.createdAt}}</b></p>
         </div>
@@ -71,7 +71,7 @@
       <div ng-repeat="order in ordersReceived">
         <hr>
         <div class="row">
-          <p>Order Placed By: <b>{{order.recipient.data.first_name}}</b></p>
+          <p>Order Placed By: <b>{{order.recipient.first_name}}</b></p>
           <p>Number of Product(s):<b> {{order.products.length}}</b></p>
           <p>Placed On:<b> {{order.createdAt}}</b></p>
           <p>Received On:<b> {{order.updatedAt}}</b></p>

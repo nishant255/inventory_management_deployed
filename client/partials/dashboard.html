@@ -41,7 +41,7 @@
          </thead>
          <tbody>
            <tr ng-repeat="order in orders | orderBy:createdAt:isReversed">
-             <td>{{order.recipient.data.email}}</td>
+             <td>{{order.recipient.email}}</td>
              <td>{{order.numProducts}}</td>
              <td>{{order.createdAt | date:'medium'}}</td>
              <td><a class="btn blue" href='/#!/orders/{{order._id}}'>View Order</a></td>

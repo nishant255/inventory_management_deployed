@@ -99,7 +99,7 @@ app.controller('addProductsController', ['$scope', '$location', 'productFactory'
       $scope.order.numProducts += $scope.order.quantity[i]
     }
     $scope.order.products = $scope.products
-    $scope.order.recipient = $scope.user
+    $scope.order.recipient = $scope.user.data
     $scope.order.sender = $scope.company
     $scope.order.received = false;
     delete $scope.order.buyPrice
