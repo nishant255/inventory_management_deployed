@@ -26,7 +26,7 @@ function OrdersController() {
   };
   _this.indexNotReceived = function(req, res){
     decon.log('got to the server controller and about to search for orders in DB');
-    Order.find({received:false},function(err,result){
+    Order.find({received:false}, function(err,result){
       if(err){
         decon.log('there was an error finding orders',err);
         res.json(err);
@@ -50,13 +50,14 @@ function OrdersController() {
   };
   _this.create = function (req, res) {
     decon.log('got to the server controller with order data ',req.body);
+    decon.log('SC products ',req.body.products);
     Order.create(req.body,function(err,result){
       if(err){
         decon.log('there was an error creating order ',err);
-        res.json(err);
+        res.json({error: err, success: false});
       } else {
         decon.log('successfully created order ',result.recipient.data);
-        res.json(result);
+        res.json({order: result, success: true});
       }
     });
   };

@@ -49,6 +49,8 @@ app.factory('orderFactory', ['$http', function ($http) {
       });
     };
     this.create = function(order,callback){
+      console.log("ORDER IN FACTORY");
+      console.log(order);
       $http.post('/orders/',order).then(function(returned_data){
         message = {};
         console.log('returned form the server with the created company',returned_data.data);
