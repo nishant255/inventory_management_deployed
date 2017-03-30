@@ -54,10 +54,10 @@ function OrdersController() {
     Order.create(req.body,function(err,result){
       if(err){
         decon.log('there was an error creating order ',err);
-        res.json({error: err, success: false});
+        res.json({error: err, success: false, message: err.message});
       } else {
         decon.log('successfully created order ',result.recipient.data);
-        res.json({order: result, success: true});
+        res.json({order: result, success: true, message: "Successfully Created Order"});
       }
     });
   };
