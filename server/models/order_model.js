@@ -17,7 +17,7 @@ var order = new mongoose.Schema({
     street: { type:String, required:true, minlength:2 },
     city: { type:String, required:true, minlength:2 },
     zipcode: { type:String, required:true, minlength:5, maxlength:5 },
-    state: { type:String, required:true, minlength:5 }
+    state: { type:String, required:true, minlength:2 }
   },
 }, {timestamps: true});
 
