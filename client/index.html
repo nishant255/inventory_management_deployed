@@ -1,62 +1,45 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <base href="/">
-    <meta charset="utf-8">
-    <title>Inventory Management</title>
+<html lang="en-us">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+.city {
+    float: left;
+    margin: 5px;
+    padding: 15px;
+    max-width: 300px;
+    height: 300px;
+    border: 1px solid black;
+}
+</style>
+</head>
+<body>
 
-    <!-- Google Icon Font -->
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<h1>Responsive Web Design Demo</h1>
 
-    <!-- Bower Components -->
-    <script src='angular/angular.js' charset='utf-8' ></script>
-    <script src='angular-route/angular-route.js' charset='utf-8' ></script>
-    <script src='angular-messages/angular-messages.js' charset='utf-8' ></script>
-    <script src='angular-cookies/angular-cookies.js' charset='utf-8' ></script>
-    <script src='jquery/dist/jquery.js' charset='utf-8' ></script>
-    <script src='materialize/dist/js/materialize.min.js' charset='`utf-8' ></script>
-    <link rel="stylesheet" type="text/css" href="materialize/dist/css/materialize.min.css">
+<div class="city">
+  <h2>London</h2>
+  <p>London is the capital city of England.</p>
+  <p>It is the most populous city in the United Kingdom, with a metropolitan area of over 13 million inhabitants.</p>
+</div>
 
-    <!-- Master App -->
-    <script src='./assets/angular/app.js' charset='utf-8' ></script>
+<div class="city">
+  <h2>Paris</h2>
+  <p>Paris is the capital of France.</p>
+  <p>The Paris area is one of the largest population centers in Europe, with more than 12 million inhabitants.</p>
+</div>
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+<div class="city">
+  <h2>Tokyo</h2>
+  <p>Tokyo is the capital of Japan.</p>
+  <p>It is the center of the Greater Tokyo Area,  and the most populous metropolitan area in the world.</p>
+</div>
 
-    <!-- Factories -->
-    <script src='./assets/angular/factories/companyFactory.js' charset='utf-8' ></script>
-    <script src='./assets/angular/factories/productFactory.js' charset='utf-8' ></script>
-    <script src='./assets/angular/factories/userFactory.js' charset='utf-8' ></script>
-    <script src='./assets/angular/factories/orderFactory.js' charset='utf-8' ></script>
+<div class="city">
+  <h2>New York</h2>
+  <p>The City of New York is the most populous city in the United States.</p>
+  <p>New York is an important center for international diplomacy and has been described as the cultural and financial capital of the world.</p>
+</div>
 
-    <!-- Controllers -->
-    <script src='./assets/angular/controllers/inventoryController.js' charset='utf-8' ></script>
-    <script src='./assets/angular/controllers/registerController.js' charset='utf-8' ></script>
-    <script src='./assets/angular/controllers/loginController.js' charset='utf-8' ></script>
-    <script src='./assets/angular/controllers/productController.js' charset='utf-8' ></script>
-    <script src='./assets/angular/controllers/orderController.js' charset='utf-8' ></script>
-    <script src='./assets/angular/controllers/companyController.js' charset='utf-8' ></script>
-    <script src='./assets/angular/controllers/dashboardController.js' charset='utf-8' ></script>
-    <script src='./assets/angular/controllers/showUserController.js' charset='utf-8' ></script>
-    <script src='./assets/angular/controllers/addOrderController.js' charset='utf-8' ></script>
-    <script src='./assets/angular/controllers/addCompanyController.js' charset='utf-8' ></script>
-    <script src='./assets/angular/controllers/addProductsController.js' charset='utf-8' ></script>
-    <script src='./assets/angular/controllers/addProductController.js' charset='utf-8' ></script>
-    <script src='./assets/angular/controllers/ordersController.js' charset='utf-8' ></script>
-    <script src='./assets/angular/controllers/companiesController.js' charset='utf-8' ></script>
-    <script src='./assets/angular/controllers/dashboardController.js' charset='utf-8' ></script>
-    <script src='./assets/angular/controllers/registerController.js' charset='utf-8' ></script>
-
-    <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <script type="text/javascript">
-       $('select').material_select();
-    </script>
-
-  </head>
-  <body ng-app='app'>
-    <div ng-view="">
-
-    </div>
-  </body>
+</body>
 </html>
