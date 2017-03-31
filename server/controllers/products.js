@@ -41,10 +41,10 @@ function ProductsController() {
     Product.create(req.body,function(err,result){
       if(err){
         decon.log('there was an error creating product',err);
-        res.json(err)
+        res.json({error: err, success: false, message: "Error while creating Product"})
       } else {
         decon.log('successfully created product ',result);
-        res.json(result)
+        res.json({result: result, success: true, message: "Successfully created Product"})
       }
     })
   }
@@ -149,7 +149,7 @@ function ProductsController() {
     _this.updateloop(order.products,product_num);
   };
   _this.receiveOrderFromServer = function(order){
-    var product_num = 0;    
+    var product_num = 0;
     decon.log('got to the server with the order!',order);
     _this.updateloop(order.products,product_num);
   };
