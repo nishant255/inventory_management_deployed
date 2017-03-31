@@ -40,10 +40,10 @@ function CompaniesController() {
     Company.create(req.body,function(err,result){
       if(err){
         decon.log('there was an error creating company',err);
-        res.json(err);
+        res.json({error: err, success: false, message: "Error while creating Company"});
       } else {
         decon.log('successfully created company ',result);
-        res.json(result);
+        res.json({result: result, success: true, message: "Successfully created Company"});
       }
     });
   };
