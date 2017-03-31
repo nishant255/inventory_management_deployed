@@ -67,6 +67,24 @@ function CompaniesController() {
       }
     });
   };
+  _this.addProductFromServer = function(product){
+    decon.log('got to the server controller with the product data ',product);
+    Company.update({_id:product._company},{$push:{'products':product}},function(err,result){
+      if(err){
+        decon.log('there was an error updating company',err);
+
+      } else {
+
+        Company.findById(product._company,function(err,result){
+          if(err){
+            decon.log('error!',err);
+          } else {
+            decon.log('FOUND TEH COMPENEH',result);
+          }
+        });
+      }
+    });
+  };
   _this.show = function(req,res){
     decon.log('got to the server with company id ', req.body);
     Company.findOne({_id: req.body}, function(err,result){

@@ -1,5 +1,6 @@
 var decon = require('./../../debugLog.js');
 decon.log("Loading Serverside products.js");
+var CompanyController = require('./companies.js');
 
 var mongoose = require('mongoose'),
     Product = mongoose.model('Product');
@@ -19,7 +20,7 @@ function ProductsController() {
         res.json(err);
       } else {
         decon.log('successfully found products', result);
-        res.json(result)
+        res.json(result);
       }
     })
   }
@@ -44,6 +45,7 @@ function ProductsController() {
         res.json({error: err, success: false, message: "Error while creating Product"})
       } else {
         decon.log('successfully created product ',result);
+        CompanyController.addProductFromServer(result);
         res.json({result: result, success: true, message: "Successfully created Product"})
       }
     })
