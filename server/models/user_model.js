@@ -15,7 +15,7 @@ var UserSchema = new mongoose.Schema({
     street: { type:String,  minlength:2 },
     city: { type:String,  minlength:2 },
     zipcode: { type:String, minlength:5, maxlength:5 },
-    state: { type:String, minlength:5 }
+    state: { type:String, minlength:2 }
   }],
 
   phone_number: { type:Number, required:true, minlength: 10},
